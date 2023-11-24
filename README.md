@@ -1,4 +1,4 @@
-# base-project: Base project structure for machine learning project
+# base-project: Base Project Structure
 
 # Summary
 ### 1. Entrypoint
