@@ -53,7 +53,7 @@ def D(fn):
         logs = f"{'  ' + name:15}| "
         if len(args) > 0 and isinstance(args[0], object):  # if function is method or main function
             logs = f"{logs}{fn.__module__.split('.')[-1]}."
-        log(f"{logs}{fn.__name__}()")
+        print(f"{logs}{fn.__name__}()")
 
     @wraps(fn)
     def _log(*args, **kwargs):

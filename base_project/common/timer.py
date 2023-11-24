@@ -3,7 +3,7 @@
 Context and decorator form timer.
 """
 
-from base_project.common.logging import *
+from base_project.common.utils import *
 
 
 class Timer(contextlib.ContextDecorator):
@@ -25,7 +25,7 @@ class Timer(contextlib.ContextDecorator):
 
     def __exit__(self, *exc):
         elapsed_time = perf_counter() - self.start_time
-        log(f"{'* ' + self.name:30}| {elapsed_time:.2f}s ({elapsed_time/60:.2f}m)")
+        print(f"{'* ' + self.name:15}| {elapsed_time:.2f}s ({elapsed_time/60:.2f}m)")
         return False
 
 

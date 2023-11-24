@@ -2,9 +2,7 @@ from base_project._utils import *
 
 
 @D
-def main(args):
-    log("This log is log()")
-    dlog("This log is dlog()")
+def main():
     main1()
     main2()
 @D
@@ -26,14 +24,4 @@ def main21():
 
 
 if __name__ == '__main__':
-    # 1. Parsing
-    parser = ArgumentParser()
-    parser.add_argument('--dev', action='store_true', help='Development mode or not')
-    parser.add_argument('--configs', default='base_project/configs.yaml', help='Configuration file path (yaml)')
-    args = parser.parse_args()
-
-    # 2. Initialize logger
-    initialize_logger(args)
-
-    # 3. Start
-    main(args)
+    main()

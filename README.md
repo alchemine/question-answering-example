@@ -4,15 +4,13 @@
 ### 1. Entrypoint
 [`base_project/launch.py`](https://github.com/alchemine/base-project/blob/main/base_project/launch.py)
 ```bash
-$ git clone https://github.com/alchemine/base-project.git
-$ cd base-project
-$ python -m base_project.launch --dev
+git clone https://github.com/alchemine/base-project.git
+cd base-project
+python -m base_project.launch --dev
 ```
 
 ```
   1            | __main__.main()
-This log is log()
-This log is dlog()
   1.1          | main1()
   1.1.1        | main11()
 * 1.1.1        | 0.00s (0.00m)
@@ -31,25 +29,24 @@ This log is dlog()
 
 ### 3. `configs.yaml`: Configuration
 
-### 4. `poetry`: Package managing tool
-
 ---
 
 # 1. Directory Structure
 ```bash
 base-project
-├── README.md
 ├── base_project
 │   ├── common
 │   │   ├── __init__.py
 │   │   ├── env.py
 │   │   ├── depth_logging.py
-│   │   ├── logging.py
 │   │   ├── timer.py
 │   │   └── utils.py
 │   ├── _utils.py
 │   ├── configs.yaml
 │   └── launch.py
+├── docker-compose.yml
+├── Dockerfile
+├── README.md
 └── .gitignore
 ```
 
@@ -66,41 +63,12 @@ See details in [base_project/common/\_\_init\_\_.py](https://github.com/alchemin
        ↓
     utils.py     : Utility module (function, class)
        ↓
-   logging.py    : Logging module
-       ↓
     timer.py     : Timer module
        ↓
 depth_logging.py : Depth logging module
 ```
 
-## 2.3 Logging
-- `log()`: log to `stdout`
-- `dlog()`: log to `stdout` when development option is present
-  - Development option: `--dev` \
-  See details in [`base_project/launch.py`](https://github.com/alchemine/base-project/blob/main/base_project/launch.py).
-- Log directory: `log_dir` in [`base_project/configs.yaml`](https://github.com/alchemine/base-project/blob/main/base_project/configs.yaml)
-
-```python
-from base_project.common.logging import log, dlog, initialize_logger
-from argparse import ArgumentParser
-
-
-parser = ArgumentParser()
-parser.add_argument('--dev', action='store_true', help='Development mode or not')
-parser.add_argument('--configs', default='configs.yaml', help='Configuration file path (yaml)')
-args = parser.parse_args()
-
-initialize_logger(args)
-
-if args.dev:
-    log("STDOUT O, FILE O")
-    dlog("STDOUT O, FILE O")
-else:
-    log("STDOUT O, FILE O")
-    dlog("STDOUT X, FILE O")
-```
-
-## 2.4 Timer
+## 2.3 Timer
 - Context manager
     - `Timer(name)`
         ```python
@@ -136,7 +104,7 @@ else:
       * Elapsed time | 1.00s (0.02m)
       ```
 
-# 2.5 Depth Logging
+# 2.4 Depth Logging
 - Decorator: `@D`
     ```python
     from base_project.common.depth_logging import D
