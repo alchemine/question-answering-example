@@ -11,6 +11,18 @@ services:
       - 8888:8888
     volumes:
       - .:/opt/project
+    environment:
+      - PATH=/root/.local/bin/poetry:$PATH
+    working_dir: /opt/project
+#    command: poetry run jupyter notebook
+    restart: always
     privileged: true
     ipc: host
     tty: true
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              device_ids: ['0']
+              capabilities: [gpu]
