@@ -14,7 +14,7 @@ services:
     environment:
       - PATH=/root/.local/bin/poetry:$PATH
     working_dir: /opt/project
-#    command: poetry run jupyter notebook
+    command: poetry run jupyter notebook
     restart: always
     privileged: true
     ipc: host
